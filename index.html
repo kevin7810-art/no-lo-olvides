@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .image {
+            width: 50%;
+            border-radius: 10px;
+        }
+        .code {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border-radius: 10px;
+        }
+        .copy-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+        .temazo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6347;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡Mi Carta Para Ti!</h1>
+        <!-- Imagen de la carta -->
+        <img class="image" src="https://drive.google.com/uc?id=1p4iOds8tOKrZ6JZeIVZp4WsLjfalsJ1I" alt="Carta">
+
+        <!-- Video de YouTube -->
+        <div id="player"></div>
+
+        <!-- Texto debajo del video -->
+        <div class="temazo">¡Temazo!</div>
+
+        <!-- Código binario -->
+        <div class="code">
+            01010100 01100101 00100000 01101111 01100100 01101001 01101111 00100000 01100011 01101111 01101110 00100000 01110100 01101111 01100100 00100000 01100101 01101100 00100000 01100011 01101111 01110010 01100001 01111010 01101111 01101110 00100000 00111100 00110011
+        </div>
+
+        <!-- Botón para copiar el código -->
+        <button class="copy-btn" onclick="copyText()">Copiar Código</button>
+    </div>
+
+    <script>
+        // Cargar la API de YouTube
+        function onYouTubeIframeAPIReady() {
+            var player = new YT.Player('player', {
+                videoId: 'BtQ4gcpoVeU', // ID del video
+                playerVars: {
+                    start: 486, // Empezar en 8:06 (486 segundos)
+                    end: 547, // Terminar en 8:53 (547 segundos)
+                    autoplay: 1, // Reproducir automáticamente
+                    controls: 1, // Mostrar controles
+                }
+            });
+        }
+
+        // Cargar la API de YouTube asincrónicamente
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Función para copiar el código
+        function copyText() {
+            const text = document.querySelector('.code').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Código copiado al portapapeles');
+            });
+        }
+    </script>
+
+</body>
+</html>
